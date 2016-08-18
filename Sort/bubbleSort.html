@@ -1,0 +1,58 @@
+<html>
+<head>
+	<script type="text/javascript" src="testCase.js"></script>
+	<script type="text/javascript">
+
+//function bubbleSort
+function bubbleSort(unSorted)
+{
+	if(!unSorted)
+		return;
+
+	if(!(unSorted instanceof Array))
+		return;
+
+	if(unSorted.length === 0)
+		return;
+
+	var temp;
+	for(var i=0;  i<unSorted.length-1; i++){
+
+		for(var j=0; j<unSorted.length-i-1; j++){
+
+			if(unSorted[j] > unSorted[j+1])
+			{
+				temp = unSorted[j];
+				unSorted[j] = unSorted[j+1];
+				unSorted[j+1] = temp;
+			}
+		}
+	}
+}
+
+
+//test cases
+function bubbleSort_test1 (argument) {
+	var input = [];
+	testCase(input, bubbleSort);
+}
+
+function bubbleSort_test2 (argument) {
+	var input = [8,7,5,6,3,1,2,9];
+	testCase(input, bubbleSort);
+	
+}
+
+function bubbleSort_test3 (argument) {
+	var input = [8,7,6,5,4,3,2,1];
+	testCase(input, bubbleSort);
+}
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>

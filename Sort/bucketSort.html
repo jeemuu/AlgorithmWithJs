@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript">
+var inArray = [];
+inArray.push({key: 6, value: 'testa'});
+inArray.push({key: 1, value: 'testb'});
+inArray.push({key: 3, value: 'testc'});
+inArray.push({key: 2, value: 'testd'});
+inArray.push({key: 17, value: 'teste'});
+inArray.push({key: 8, value: 'testf'});
+inArray.push({key: 9, value: 'testg'});
+
+
+var tempArray = {};
+
+
+for(var j=0; j<inArray.length; j++)
+{
+	tempArray[ inArray[j].key ] = inArray[j];
+}
+
+
+for(var i=1; i<=20; i++){
+
+	if(!tempArray[i])
+		continue;
+	console.debug(tempArray[i]);
+}
+
+
+</script>
+
+</head>
+<body></body>
+
+</html>

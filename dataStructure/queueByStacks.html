@@ -1,0 +1,91 @@
+<html>
+<head>
+	<script type="text/javascript" src="../testCase.js"></script>
+	<script type="text/javascript">
+
+var queueSt = (function(){
+
+	var inStack = [];
+	var outStack = [];
+
+	function enQue(data){
+
+		if(!data)
+			return;
+
+		inStack.push(data);
+
+	}
+
+	function deQue(){
+
+		if(outStack.length === 0)
+		{
+			var len = inStack.length;
+			for(var i=0; i< len; i++){
+
+				outStack.push(inStack.pop());
+			}
+		}
+
+		if(outStack.length === 0)
+			return '';
+
+		return outStack.pop();
+	}
+
+	return {
+		enQue: enQue,
+		deQue: deQue
+	}
+
+})();
+
+
+//simple testcase
+function test () {
+	
+	queueSt.enQue();
+	queueSt.enQue(1);
+	queueSt.enQue(2);
+	queueSt.enQue(3);
+
+	console.log("expect: 1,2,3");
+	var result = queueSt.deQue();
+	result += ',' + queueSt.deQue();
+	result += ',' + queueSt.deQue();
+
+	console.log("result: " + result);
+}
+
+
+//complex testcase
+function test1 () {
+	
+	queueSt.enQue(1);
+	queueSt.enQue(2);
+	queueSt.deQue();
+	queueSt.deQue();
+	queueSt.deQue();
+	queueSt.deQue();
+	queueSt.enQue(3);
+	queueSt.deQue();
+	queueSt.enQue(4);
+
+
+	console.log("expect: 4");
+	var result = queueSt.deQue();
+	result += ',' + queueSt.deQue();
+	result += ',' + queueSt.deQue();
+
+	console.log("result: " + result);
+}
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>

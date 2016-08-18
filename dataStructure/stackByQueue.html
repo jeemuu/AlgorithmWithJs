@@ -1,0 +1,102 @@
+<html>
+<head>
+	<script type="text/javascript" src="../testCase.js"></script>
+	<script type="text/javascript">
+
+Array.prototype.enQueue = function(data)
+{
+	this.push(data);	//push is a enque operation
+}
+
+Array.prototype.deQueue = function()
+{
+	return this.splice(0,1);	//splice(0,1) is a deque operation
+}
+
+var stackQ = (function(){
+
+	var que1 = [];
+	var que2 = [];
+
+	function push(data){
+
+		if(!data)
+			return;
+		var que = (que1.length >0)? que1: que2;
+		que.enQueue(data);								
+
+	}
+
+	function pop(){
+
+		var popQue = (que1.length >0)? que1: que2;
+		if(popQue.length <1)
+			return '';
+		var cacheQue = (popQue == que1)? que2 : que1;
+		var len = popQue.length -1;
+		for(var i=0; i< len; i++){
+			cacheQue.push(popQue.deQueue());			
+		}
+
+		return popQue.deQueue();
+	}
+
+	function init(){
+		que1 = [];
+		que2 = [];
+	}
+
+	return {
+		init: init,
+		push:push,
+		pop: pop
+	}
+
+})();
+
+
+//simple testcase
+function test () {
+	
+	stackQ.init();
+	stackQ.push();
+	stackQ.push(1);
+	stackQ.push(2);
+	stackQ.push(3);
+
+	console.log("expect: 3,2,1");
+	var result = stackQ.pop();
+	result += ',' + stackQ.pop();
+	result += ',' + stackQ.pop();
+
+	console.log("result: " + result);
+}
+
+
+//complex testcase
+function test1 () {
+	stackQ.init();
+	stackQ.push(1);
+	stackQ.push(2);
+	stackQ.pop();
+	stackQ.push(3);
+	stackQ.pop();
+	stackQ.push(4);
+
+
+	console.log("expect: 4,1");
+	var result = stackQ.pop();
+	result += ',' + stackQ.pop();
+	result += ',' + stackQ.pop();
+
+	console.log("result: " + result);
+}
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<html>
+<head>
+	<script type="text/javascript">
+
+//function quickSort
+function quickSort(unSorted)
+{
+	if(!unSorted)
+		return;
+
+	if(!(unSorted instanceof Array))
+		return;
+
+	if(unSorted.length === 0)
+		return;
+
+	quickSortSub(unSorted, 0, unSorted.length-1)
+}
+
+
+function quickSortSub(unSorted, low, high){
+
+	if(low >= high)
+		return;
+
+
+	var position = partionArray(unSorted, low, high);
+
+	quickSortSub(unSorted, low, position-1);
+
+	quickSortSub(unSorted, position+1, high);	
+
+}
+
+function partionArray(unSorted, low, high)
+{
+	var value = unSorted[low];
+	while(low<high){
+		while(low < high && unSorted[high] >= value) 
+			high--;
+
+		unSorted[low] = unSorted[high];
+		while(low < high && unSorted[low] <= value)
+			low++;
+
+		unSorted[high] = unSorted[low];		
+	}
+
+	unSorted[low] = value;
+	console.log(unSorted);
+	return low;
+}
+
+//test cases
+function quickSort_test1 (argument) {
+	var input = [];
+	console.log("input :" + input);
+	quickSort([]);
+	console.log("output:" + input);
+	console.log("expect: []");
+}
+
+function quickSort_test2 (argument) {
+	var input = [8,7,5,6,3,1,2,9];
+	console.log("input :" + input);
+	quickSort(input);
+	console.log("output:" + input);
+	console.log("expect:" + [1,2,3,5,6,7,8,9]);
+}
+
+function quickSort_test3 (argument) {
+	var input = [8,7,6,5,4,3,2,1];
+	console.log("input :" + input);
+	quickSort(input);
+	console.log("output:" + input);
+	console.log("expect:" + [1,2,3,4,5,6,7,8]);
+}
+
+function testCase(input){
+
+	console.log("input :" + input);
+	quickSort(input);
+	console.log("Sorted:" + input);
+	console.log("expect:" + input.sort());
+}
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>
